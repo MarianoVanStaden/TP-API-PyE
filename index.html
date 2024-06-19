@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta - Análisis de Datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Análisis de Datos de la Encuesta</h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="poblacion-tab" data-bs-toggle="tab" data-bs-target="#poblacion" type="button" role="tab" aria-controls="poblacion" aria-selected="true">Población completa</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="frecuencia-tab" data-bs-toggle="tab" data-bs-target="#frecuencia" type="button" role="tab" aria-controls="frecuencia" aria-selected="false">Tablas de Frecuencia</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="estadisticos-tab" data-bs-toggle="tab" data-bs-target="#estadisticos" type="button" role="tab" aria-controls="estadisticos" aria-selected="false">Estadísticos</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="poblacion" role="tabpanel" aria-labelledby="poblacion-tab">
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th>Nombre y Apellido</th>
+                            <th>Edad</th>
+                            <th>Curso</th>
+                            <th>Nivel Educativo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="poblacionTableBody">
+                        <!-- Datos de la API -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="frecuencia" role="tabpanel" aria-labelledby="frecuencia-tab">
+                <h3 class="mt-4">Frecuencia de Niveles Educativos</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nivel Educativo</th>
+                            <th>Frecuencia Absoluta</th>
+                            <th>Frecuencia Acumulada</th>
+                            <th>Frecuencia Relativa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="frecuenciaNivelesTableBody">
+                        <!-- Datos de Frecuencia -->
+                    </tbody>
+                </table>
+                <h3 class="mt-4">Frecuencia de Cursos (Secundario)</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Frecuencia Absoluta</th>
+                            <th>Frecuencia Acumulada</th>
+                            <th>Frecuencia Relativa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="frecuenciaCursosTableBody">
+                        <!-- Datos de Frecuencia -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="estadisticos" role="tabpanel" aria-labelledby="estadisticos-tab">
+                <h3 class="mt-4">Estadísticos de Edad</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Media</th>
+                            <th>Mediana</th>
+                            <th>Valor Máximo</th>
+                            <th>Valor Mínimo</th>
+                            <th>Primer Cuartil</th>
+                            <th>Segundo Cuartil</th>
+                            <th>Desvío Estándar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="estadisticosTableBody">
+                        <!-- Datos Estadísticos -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
