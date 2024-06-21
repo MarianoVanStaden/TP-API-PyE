@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error("Error fetching data:", error));
 
     function cargarTablaPoblacion( registrosEstudiantes) {
-        const tableBody = document.getElementById("poblacionTableBody");
-        tableBody.innerHTML =  registrosEstudiantes.map(record => `
+        const tablaBody = document.getElementById("poblacionTablaBody");
+        tablaBody.innerHTML =  registrosEstudiantes.map(registro => `
             <tr>
-                <td>${record.nombre} ${record.apellido}</td>
-                <td>${record.Edad}</td>
-                <td>${record.curso}</td>
-                <td>${record.nivel}</td>
+                <td>${registro.nombre} ${registro.apellido}</td>
+                <td>${registro.Edad}</td>
+                <td>${registro.curso}</td>
+                <td>${registro.nivel}</td>
             </tr>
         `).join("");
     }
@@ -29,23 +29,23 @@ document.addEventListener("DOMContentLoaded", function() {
         const nivelesFrecuencia = {};
         const cursosFrecuencia = {};
 
-         registrosEstudiantes.forEach(record => {
-            nivelesFrecuencia[record.nivel] = (nivelesFrecuencia[record.nivel] || 0) + 1;
-            if (record.nivel === "Secundario") {
-                cursosFrecuencia[record.curso] = (cursosFrecuencia[record.curso] || 0) + 1;
+         registrosEstudiantes.forEach(registro => {
+            nivelesFrecuencia[registro.nivel] = (nivelesFrecuencia[registro.nivel] || 0) + 1;
+            if (registro.nivel === "Secundario") {
+                cursosFrecuencia[registro.curso] = (cursosFrecuencia[registro.curso] || 0) + 1;
             }
         });
 
-        populateFrecuenciaTable(nivelesFrecuencia, "frecuenciaNivelesTableBody");
-        populateFrecuenciaTable(cursosFrecuencia, "frecuenciaCursosTableBody");
+        populateFrecuenciaTable(nivelesFrecuencia, "frecuenciaNivelesTablaBody");
+        populateFrecuenciaTable(cursosFrecuencia, "frecuenciaCursosTablaBody");
     }
 
-    function populateFrecuenciaTable(frecuenciaData, tableBodyId) {
-        const tableBody = document.getElementById(tableBodyId);
+    function populateFrecuenciaTable(frecuenciaData, tablaBodyID) {
+        const tablaBody = document.getElementById(tablaBodyID);
         const total = Object.values(frecuenciaData).reduce((sum, freq) => sum + freq, 0);
         let acumulada = 0;
 
-        tableBody.innerHTML = Object.entries(frecuenciaData).map(([key, freq]) => {
+        tablaBody.innerHTML = Object.entries(frecuenciaData).map(([key, freq]) => {
             acumulada += freq;
             return `
                 <tr>
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function  cargarTablaEstadistica( registrosEstudiantes) {
-        const edades =  registrosEstudiantes.map(record => record.Edad).sort((a, b) => a - b);
+        const edades =  registrosEstudiantes.map(registro => registro.Edad).sort((a, b) => a - b);
         const n = edades.length;
         const media = (edades.reduce((sum, edad) => sum + edad, 0) / n).toFixed(2);
         const mediana = (n % 2 === 0) ? ((edades[n / 2 - 1] + edades[n / 2]) / 2).toFixed(2) : edades[Math.floor(n / 2)].toFixed(2);
@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const q3 = (edades[Math.ceil((3 * n) / 4) - 1]).toFixed(2);
         const desviacionEstandar = Math.sqrt(edades.map(edad => (edad - media) ** 2).reduce((sum, sq) => sum + sq, 0) / n).toFixed(2);
 
-        const tableBody = document.getElementById("estadisticosTableBody");
-        tableBody.innerHTML = `
+        const tablaBody = document.getElementById("estadisticosTablaBody");
+        tablaBody.innerHTML = `
             <tr>
                 <td>${media}</td>
                 <td>${mediana}</td>
