@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.success) {
                 const  registrosEstudiantes = data.data;
                 cargarTablaPoblacion( registrosEstudiantes);
-                 cargarTablaFrecuencia( registrosEstudiantes);
-                 cargarTablaEstadistica( registrosEstudiantes);
+                cargarTablaFrecuencia( registrosEstudiantes);
+                cargarTablaEstadistica( registrosEstudiantes);
             }
         })
         .catch(error => console.error("Error fetching data:", error));
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const maximo = Math.max(...edades);
         const minimo = Math.min(...edades);
         const q1 = (edades[Math.floor(n / 4)]).toFixed(2);
-        const q3 = (edades[Math.floor(3 * n / 4)]).toFixed(2);
+        const q3 = (edades[Math.ceil((3 * n) / 4) - 1]).toFixed(2);
         const desviacionEstandar = Math.sqrt(edades.map(edad => (edad - media) ** 2).reduce((sum, sq) => sum + sq, 0) / n).toFixed(2);
 
         const tableBody = document.getElementById("estadisticosTableBody");
